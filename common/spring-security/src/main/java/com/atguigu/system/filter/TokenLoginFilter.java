@@ -41,6 +41,8 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     private AsyncLoginLogService asyncLoginLogService;
     //test
 
+    //git-test
+
     public TokenLoginFilter(AuthenticationManager authenticationManager, RedisTemplate redisTemplate,
                             AsyncLoginLogService asyncLoginLogService) {
         this.setAuthenticationManager(authenticationManager);
