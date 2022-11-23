@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 public class CustomMd5PasswordEncoder implements PasswordEncoder {
 
     public String encode(CharSequence rawPassword){
+        System.out.println("tesx-xxx");
+        System.out.println("tesx-xxx");
         return MD5.encrypt(rawPassword.toString());
     }
 
