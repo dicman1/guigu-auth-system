@@ -57,6 +57,7 @@ public class SysDeptController {
     @ApiOperation(value = "删除菜单")
     @DeleteMapping("/remove/{id}")
     public Result remove(@PathVariable String id) {
+        System.out.println("删除成功");
         sysDeptService.removeById(id);
         return Result.ok();
     }
