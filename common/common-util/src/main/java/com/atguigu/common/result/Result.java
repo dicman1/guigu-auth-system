@@ -7,6 +7,8 @@ public class Result<T>{
 
     //by szm
     //返回码
+
+    //xxx
     private Integer code;
 
     //返回消息
