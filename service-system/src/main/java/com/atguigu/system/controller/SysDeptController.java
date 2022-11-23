@@ -51,6 +51,7 @@ public class SysDeptController {
     @GetMapping("/findNode/{id}")
     public Result findNode(@PathVariable String id) {
         SysDept sysDept = sysDeptService.getById(id);
+        System.out.println(sysDept);
         return Result.ok(sysDept);
     }
 
