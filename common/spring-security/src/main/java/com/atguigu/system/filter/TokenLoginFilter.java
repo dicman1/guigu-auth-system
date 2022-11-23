@@ -7,7 +7,10 @@ import com.atguigu.common.utils.JwtHelper;
 import com.atguigu.common.utils.ResponseUtil;
 import com.atguigu.model.vo.LoginVo;
 import com.atguigu.system.custom.CustomUser;
+import com.atguigu.system.service.AsyncLoginLogService;
+import com.atguigu.system.utils.IpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -34,12 +37,18 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     private RedisTemplate redisTemplate;
 
-    public TokenLoginFilter(AuthenticationManager authenticationManager, RedisTemplate redisTemplate) {
+    @Autowired
+    private AsyncLoginLogService asyncLoginLogService;
+    //test
+
+    public TokenLoginFilter(AuthenticationManager authenticationManager, RedisTemplate redisTemplate,
+                            AsyncLoginLogService asyncLoginLogService) {
         this.setAuthenticationManager(authenticationManager);
         this.setPostOnly(false);
         //指定登录接口及提交方式，可以指定任意路径
         this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/admin/system/index/login","POST"));
         this.redisTemplate = redisTemplate;
+        this.asyncLoginLogService = asyncLoginLogService;
     }
 
     /**
@@ -80,11 +89,13 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
         //保存权限数据
         redisTemplate.opsForValue().set(customUser.getUsername(), JSON.toJSONString(customUser.getAuthorities()));
 
+        asyncLoginLogService.recordLoginLog(customUser.getUsername(),1, IpUtil.getIpAddress(request),"登录成功");
+
         Map<String, Object> map = new HashMap<>();
         map.put("token", token);
         ResponseUtil.out(response, Result.ok(map));
-    }
 
+    }
     /**
      * 登录失败
      * @param request
