@@ -11,7 +11,7 @@ import java.net.UnknownHostException;
  * 获取ip地址
  */
 public class IpUtil {
-
+    //ipconfig
     public static String getIpAddress(HttpServletRequest request) {
         String ipAddress = null;
         try {
