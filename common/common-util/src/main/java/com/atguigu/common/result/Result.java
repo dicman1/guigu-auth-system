@@ -4,11 +4,7 @@ import lombok.Data;
 
 @Data
 public class Result<T>{
-    /**
-     * 相关数据
-     * 大帅哥
-     * xixixi
-     */
+
 
     //返回码
     private Integer code;
