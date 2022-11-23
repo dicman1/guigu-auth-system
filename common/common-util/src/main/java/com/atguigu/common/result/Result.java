@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Result<T>{
 
-
+    //by szm
     //返回码
     private Integer code;
 
