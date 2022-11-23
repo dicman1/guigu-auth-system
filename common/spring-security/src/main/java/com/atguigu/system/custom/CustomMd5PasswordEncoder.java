@@ -6,14 +6,12 @@ import org.springframework.stereotype.Component;
  * <p>
  * 密码处理方法
  * </p>
- *
  */
 @Component
 public class CustomMd5PasswordEncoder implements PasswordEncoder {
 
     public String encode(CharSequence rawPassword){
-        System.out.println("tesx-xxx");
-        System.out.println("tesx-xxx");
+        System.out.println("GJJ");
         return MD5.encrypt(rawPassword.toString());
     }
 
