@@ -8,10 +8,12 @@ import com.atguigu.model.vo.SysRoleQueryVo;
 import com.atguigu.system.service.SysPostService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.service.Tags;
 
 import java.util.List;
 
@@ -25,6 +27,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin/system/sysPost")
+@Api(tags = "岗位管理模块")
 public class SysPostController {
 
     @Autowired
@@ -41,7 +44,6 @@ public class SysPostController {
         }
     }
 
-
     @ApiOperation("条件分页查询接口")
     @GetMapping("/{page}/{limit}")
     public Result findPageQueryRole(@PathVariable Long page,
@@ -54,7 +56,6 @@ public class SysPostController {
         return Result.ok(pageModel);
     }
 
-
     @ApiOperation("添加操作接口")
     @PostMapping("/save")
     public Result saveRole(@RequestBody SysPost sysPost){
@@ -66,14 +67,12 @@ public class SysPostController {
         }
     }
 
-
     @ApiOperation("获取角色接口")
     @GetMapping("/get/{id}")
     public Result get(@PathVariable Long id) {
         SysPost post = sysPostService.getById(id);
         return Result.ok(post);
     }
-
 
     @ApiOperation("修改操作接口")
     @PutMapping("/update")
@@ -85,7 +84,6 @@ public class SysPostController {
             return Result.fail();
         }
     }
-
 
     @ApiOperation("批量删除接口")
     @DeleteMapping("/batchRemove")
