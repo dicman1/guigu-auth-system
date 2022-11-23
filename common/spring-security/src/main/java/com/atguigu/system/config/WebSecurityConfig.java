@@ -1,5 +1,4 @@
 package com.atguigu.system.config;
-
 import com.atguigu.system.custom.CustomMd5PasswordEncoder;
 import com.atguigu.system.filter.TokenAuthenticationFilter;
 import com.atguigu.system.filter.TokenLoginFilter;
