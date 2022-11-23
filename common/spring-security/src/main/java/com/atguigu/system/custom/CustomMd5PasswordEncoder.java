@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * <p>
- * 密码处理
+ * 密码处理方法
  * </p>
  *
  */
